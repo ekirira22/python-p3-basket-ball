@@ -193,6 +193,9 @@ def num_points_per_game(name):
                         return game_dict()[teams][detail][i]['points_per_game']
 
 
+# print(num_points_per_game('Bradley Beal'))
+
+
 def player_age(name):
     for teams in game_dict():
         for detail in game_dict()[teams]:
@@ -202,10 +205,16 @@ def player_age(name):
                         return game_dict()[teams][detail][i]['age']
 
 
+# print(player_age('Jarrett Allen'))
+
+
 def team_colors(team_name):
     for teams in game_dict():
         if game_dict()[teams]['team_name'] == team_name:
             return game_dict()[teams]['colors']
+
+
+# print(team_colors('Washington Wizards'))
 
 
 def team_names():
@@ -216,6 +225,8 @@ def team_names():
                 team_list.append(val)
     return team_list
 
+
+# print(team_names())
 
 def player_numbers(team_name):
     # returns a list of the jersey numbers
@@ -229,6 +240,8 @@ def player_numbers(team_name):
     return jersey_numbers
 
 
+# print(player_numbers('Washington Wizards'))
+
 def player_stats(name):
     # Returns a dictionary
     for teams in game_dict():
@@ -238,6 +251,8 @@ def player_stats(name):
                     if game_dict()[teams][key][i]['name'] == name:
                         return game_dict()[teams][key][i]
 
+
+# print(player_stats('Jarrett Allen'))
 
 # Advanced Deliverables
 def average_rebounds_by_shoe_brand():
@@ -271,6 +286,28 @@ def find_average(shoes):
         print(f'"{key}": {avg: .2f}')
 
 
-print(average_rebounds_by_shoe_brand())
+# print(average_rebounds_by_shoe_brand())
 
+# Additional Practice
+
+# Player with most career points
+def most_career_points():
+    career_list = dict()
+    career_points = []
+    for teams in game_dict():
+        for key, val in game_dict()[teams].items():
+            if key == 'players':
+                for i in range(len(game_dict()[teams][key])):
+                    # Create a dict to store players as keys and career points as values
+                    career_list.update({game_dict()[teams][key][i]['name']: game_dict()[teams][key][i]['career_points']})
+                    # Create a list for career points that we will use to get max and compare
+                    career_points.append(game_dict()[teams][key][i]['career_points'])
+    # Check for the largest figure, return that value
+
+    for key, val in career_list.items():
+        if val == max(career_points):
+            return key
+
+
+# print(most_career_points())
 
