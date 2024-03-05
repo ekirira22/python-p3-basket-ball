@@ -182,3 +182,63 @@ def game_dict():
             ]
         }
     }
+
+
+def num_points_per_game(name):
+    for teams in game_dict():
+        for detail in game_dict()[teams]:
+            for i in range(len(game_dict()[teams][detail])):
+                if isinstance(game_dict()[teams][detail][i], dict):
+                    if game_dict()[teams][detail][i]['name'] == name:
+                        return game_dict()[teams][detail][i]['points_per_game']
+
+
+def player_age(name):
+    for teams in game_dict():
+        for detail in game_dict()[teams]:
+            for i in range(len(game_dict()[teams][detail])):
+                if isinstance(game_dict()[teams][detail][i], dict):
+                    if game_dict()[teams][detail][i]['name'] == name:
+                        return game_dict()[teams][detail][i]['age']
+
+
+def team_colors(team_name):
+    for teams in game_dict():
+        if game_dict()[teams]['team_name'] == team_name:
+            return game_dict()[teams]['colors']
+
+
+def team_names():
+    team_list = []
+    for teams in game_dict():
+        for key, val in game_dict()[teams].items():
+            if key == 'team_name':
+                team_list.append(val)
+    return team_list
+
+
+def player_numbers(team_name):
+    # returns a list of the jersey numbers
+    jersey_numbers = []
+    for teams in game_dict():
+        for key, val in game_dict()[teams].items():
+            if game_dict()[teams][key] == team_name:
+                for detail in game_dict()[teams]['players']:
+                    jersey_numbers.append(detail['number'])
+
+    return jersey_numbers
+
+
+def player_stats(name):
+    # Returns a dictionary
+    for teams in game_dict():
+        for key, val in game_dict()[teams].items():
+            if key == 'players':
+                for i in range(len(game_dict()[teams][key])):
+                    if game_dict()[teams][key][i]['name'] == name:
+                        return game_dict()[teams][key][i]
+
+
+print(player_stats('Evan Mobley'))
+
+
