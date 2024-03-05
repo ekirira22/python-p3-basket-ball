@@ -239,6 +239,38 @@ def player_stats(name):
                         return game_dict()[teams][key][i]
 
 
-print(player_stats('Evan Mobley'))
+# Advanced Deliverables
+def average_rebounds_by_shoe_brand():
+    # Pseudocode
+    # 1. Create a dictionary that will keep track of shoe brands along with their rebounds
+    #   of all players that wear that particular shoe.
+    # 2. As we iterate through, if brand exists, add update the new value, if it doesn't add
+    #   brand as a new key
+    # 3. Once we have the values, iterate through the dictionary and calculate average rebounds for
+    #   each shoe brand. Use helper function find_average() and print out the result
+    shoe_rebounds = dict()
+    for teams in game_dict():
+        for key, val in game_dict()[teams].items():
+            if key == 'players':
+                for i in range(len(game_dict()[teams][key])):
+                    # If key (shoe_brand) does not exist, add it to the dictionary
+                    if shoe_rebounds.get(game_dict()[teams][key][i]['shoe_brand']) is None:
+                        shoe_rebounds.update({game_dict()[teams][key][i]['shoe_brand']: []})
+                    # The above will add all keys, then append the values to the list
+                    (shoe_rebounds[game_dict()[teams][key][i]['shoe_brand']]
+                     .append(game_dict()[teams][key][i]['rebounds_per_game']))
+
+    # Calculate average
+    find_average(shoe_rebounds)
+
+
+def find_average(shoes):
+
+    for key, val in shoes.items():
+        avg = sum(shoes[key]) / len(shoes[key])
+        print(f'"{key}": {avg: .2f}')
+
+
+print(average_rebounds_by_shoe_brand())
 
 
