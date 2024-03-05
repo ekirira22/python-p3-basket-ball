@@ -283,10 +283,10 @@ def find_average(shoes):
 
     for key, val in shoes.items():
         avg = sum(shoes[key]) / len(shoes[key])
-        print(f'"{key}": {avg: .2f}')
+        print(f"{key}:  {avg:.2f}")
 
 
-# print(average_rebounds_by_shoe_brand())
+print(average_rebounds_by_shoe_brand())
 
 # Additional Practice
 
